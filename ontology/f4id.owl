@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#"
      xml:base="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl"
+     xmlns:oa="http://www.w3.org/ns/oa#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:ns="http://creativecommons.org/ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:oa="http://www.w3.org/ns/oa#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl">
         <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</owl:versionInfo>
         <rdfs:comment xml:lang="en">An ontology to describe gladiators to integrate Trismegistos/SNAP data model.</rdfs:comment>
@@ -53,6 +53,33 @@
     
 
 
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasGladiatorSchool -->
+
+    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasGladiatorSchool">
+        <rdfs:domain rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gladiator"/>
+        <rdfs:range rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorSchool"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasGladiatorTitle -->
+
+    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasGladiatorTitle">
+        <rdfs:domain rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gladiator"/>
+        <rdfs:range rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorTitle"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasSocialStatus -->
+
+    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasSocialStatus">
+        <rdfs:domain rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gladiator"/>
+        <rdfs:range rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#SocialStatus"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -82,6 +109,14 @@
     
 
 
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasYearsLived -->
+
+    <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasYearsLived">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -104,6 +139,25 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasGladiatorSchool"/>
+                <owl:someValuesFrom rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorSchool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasGladiatorTitle"/>
+                <owl:someValuesFrom rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorTitle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasSocialStatus"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#SocialStatus"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasNumberOfFights"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
             </owl:Restriction>
@@ -111,6 +165,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasNumberOfFightsWon"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasYearsLived"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -128,12 +188,39 @@ The gladiator is he who fights in the arena in front of the spectators (Quintil.
     
 
 
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorSchool -->
+
+    <owl:Class rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorSchool"/>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorTitle -->
+
+    <owl:Class rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorTitle"/>
+    
+
+
     <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LessKnownGladiatorRole -->
 
     <owl:Class rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LessKnownGladiatorRole">
         <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
         <rdfs:comment xml:lang="en">Other gladiatorial categories for which the information to be gleaned from the sources is inadequate in one way or another. Either there is good written evidence but no clear depictions, or we have pictorial depictions but no name for the category shown.</rdfs:comment>
     </owl:Class>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#ScaevaGladiator -->
+
+    <owl:Class rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#ScaevaGladiator">
+        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gladiator"/>
+        <rdfs:comment xml:lang="en">Left-handed Gladiator. Commodus was a famous left-handed secutor: see Dio 73.19.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#SocialStatus -->
+
+    <owl:Class rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#SocialStatus"/>
     
 
 
@@ -188,6 +275,14 @@ The gladiator is he who fights in the arena in front of the spectators (Quintil.
     
 
 
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Freedman -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Freedman">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#SocialStatus"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gallus -->
 
     <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gallus">
@@ -208,11 +303,32 @@ The gladiator is he who fights in the arena in front of the spectators (Quintil.
     
 
 
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Invictus -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Invictus">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorTitle"/>
+        <rdfs:comment xml:lang="en">Undefeated Gladiator</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
     <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Laquerarius -->
 
     <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Laquerarius">
         <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LessKnownGladiatorRole"/>
         <rdfs:comment xml:lang="en">Laquerarius: many scholars equate the paegniarius with the laquerarius, while others see the laquerarius as a variety of retiarius carrying a kind of lasso (derived from the Latin laqueus, &apos;noose&apos;) instead of the net.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LudusMagnus -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LudusMagnus">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorSchool"/>
+        <rdfs:comment xml:lang="en">From the late first century AD onwards there were no less than four imperial ludi in Rome, the most important being the Ludus Magnus beside the Flavian
+Amphitheatre Ithe Colosseum). An underground passage linked it directly to the arena in the amphitheatre, so that the gladiators could reach the scene of
+their combat without being seen by the public.</rdfs:comment>
         <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
     </owl:NamedIndividual>
     
@@ -233,6 +349,18 @@ The gladiator is he who fights in the arena in front of the spectators (Quintil.
     <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Paegniarius">
         <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LessKnownGladiatorRole"/>
         <rdfs:comment xml:lang="en">Paegniarius: this category, according to the written sources, was not intended to perform in serious fighting with sharp-edged weapons. Its task was to entertain the audience with burlesque duels during the intervals, particularly the long interval in the middle of the day.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#PrimusPalus -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#PrimusPalus">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorTitle"/>
+        <rdfs:comment xml:lang="en">Gladiators trained first with a post (palus) as opponent (this was also the
+normal method in the army), and later with another gladiator.
+The upper ranks of the paramilitary gladiatoral hierarchy were called after these training posts: each category of gladiators had its own palus primus</rdfs:comment>
         <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
     </owl:NamedIndividual>
     
@@ -288,12 +416,29 @@ The gladiator is he who fights in the arena in front of the spectators (Quintil.
     
 
 
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Slave -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Slave">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#SocialStatus"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Thraex -->
 
     <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Thraex">
         <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
         <rdfs:comment xml:lang="en">Thraex: gladiatorial category. The &apos;Thracian&apos; wore a brimmed helmet and high greaves over quilted trousers; he carried a small rectangular shield and wore the manica. Armed with a curved sword, he fought chiefly against the murmillo.</rdfs:comment>
         <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Veteranus -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Veteranus">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorTitle"/>
+        <rdfs:comment xml:lang="en">A veteran gladiator</rdfs:comment>
     </owl:NamedIndividual>
 </rdf:RDF>
 
