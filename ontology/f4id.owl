@@ -1,1 +1,303 @@
-djhgfgfjh
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#"
+     xml:base="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:ns="http://creativecommons.org/ns#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:oa="http://www.w3.org/ns/oa#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+
+    <owl:Ontology rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl">
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">An ontology to describe gladiators to integrate Trismegistos/SNAP data model.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/ns/oa#hasSource -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/oa#hasSource"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasGladiatorRole -->
+
+    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasGladiatorRole">
+        <rdfs:domain rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gladiator"/>
+        <rdfs:range rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasNumberOfFights -->
+
+    <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasNumberOfFights">
+        <rdfs:domain rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gladiator"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasNumberOfFightsWon -->
+
+    <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasNumberOfFightsWon">
+        <rdfs:domain rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gladiator"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gladiator -->
+
+    <owl:Class rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gladiator">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasGladiatorRole"/>
+                <owl:someValuesFrom rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasNumberOfFights"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#hasNumberOfFightsWon"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">“Gladiator est, qui in arena, populo spectante, pugnavit” 
+The gladiator is he who fights in the arena in front of the spectators (Quintil. Declam, 302)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole -->
+
+    <owl:Class rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole">
+        <rdfs:comment xml:lang="en">Gladiators were divided into different classes, according to their arms and different mode of fighting, or other circumstances. (Cf. Friedländer in Rhein. Mus. 10.582 ff.)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LessKnownGladiatorRole -->
+
+    <owl:Class rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LessKnownGladiatorRole">
+        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
+        <rdfs:comment xml:lang="en">Other gladiatorial categories for which the information to be gleaned from the sources is inadequate in one way or another. Either there is good written evidence but no clear depictions, or we have pictorial depictions but no name for the category shown.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Crupellarius -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Crupellarius">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LessKnownGladiatorRole"/>
+        <rdfs:comment xml:lang="en">Crupellarius: a term mentioned by Tacitus (Annales 3, 43-6) for a category of Gallo-Roman gladiators who were so heavily armed that in battle with Roman soldiers during a civil war, when they were thrown to the ground by their enemies, their armour had to be hacked off with picks.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Dimachaerus -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Dimachaerus">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LessKnownGladiatorRole"/>
+        <rdfs:comment xml:lang="en">Dimachaerus (fighter with two swords or daggers): the written accounts we have of this category are very few and far from clear, and there is no definite pictorial documentation.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Eques -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Eques">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
+        <rdfs:comment xml:lang="en">Eques (pl. equites): gladiatorial category. One of these &apos;horsemen&apos; competed only against other equites and was armed with a round shield, helmet, thrusting spear and gladius.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Essedarius -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Essedarius">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LessKnownGladiatorRole"/>
+        <rdfs:comment xml:lang="en">Essedarius (&apos;war-chariot fighter&apos;): this is a category known after the middle of the first century ad from a great many inscriptions. The name derives from essedum, the light two-wheeled chariot of the Celts. The essedarii normally seem to have fought each other. As there are no pictorial depictions, we have no further information about their equipment and manner of fighting.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gallus -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Gallus">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
+        <rdfs:comment xml:lang="en">Gallus: early gladiatorial category, named after the Celtic Cauls defeated by the Romans.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Hoplomachus -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Hoplomachus">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
+        <rdfs:comment xml:lang="en">Hoplomachus: gladiatorial category, The hoplomachus wore tall greaves over quilted trousers, a brimmed helmet and a manica, and carried a small round shield. He was armed with a straight sword and a lance, and usually fought the murmillo.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Laquerarius -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Laquerarius">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LessKnownGladiatorRole"/>
+        <rdfs:comment xml:lang="en">Laquerarius: many scholars equate the paegniarius with the laquerarius, while others see the laquerarius as a variety of retiarius carrying a kind of lasso (derived from the Latin laqueus, &apos;noose&apos;) instead of the net.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Murmillo -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Murmillo">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
+        <rdfs:comment xml:lang="en">Murmillo: gladiatorial category. Besides the manica on his right arm, and wrappings and a greave on his left leg, he was equipped with a helmet and his characteristic shield (scutum) Armed only with the gladius, he usually fought the thraex or hoplomachus.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Paegniarius -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Paegniarius">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LessKnownGladiatorRole"/>
+        <rdfs:comment xml:lang="en">Paegniarius: this category, according to the written sources, was not intended to perform in serious fighting with sharp-edged weapons. Its task was to entertain the audience with burlesque duels during the intervals, particularly the long interval in the middle of the day.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Provocator -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Provocator">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
+        <rdfs:comment xml:lang="en">Provocator: gladiatorial category. The provocator fought other gladiators of his own kind, and his armour, besides the manica and helmet, included a breastplate and a half-length greave on the left leg. He carried a rectangular shield and a sword with a straight blade.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Retiarius -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Retiarius">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
+        <rdfs:comment xml:lang="en">Retiarius: gladiatorial category. This gladiator wore no helmet or any other defensive armour except on his left arm (the manica and galerus), and was armed with a trident, net and long dagger He fought the secutor.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Sagittarius -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Sagittarius">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#LessKnownGladiatorRole"/>
+        <rdfs:comment xml:lang="en">Sagittarius (archer): there are a few written mentions of this category, but they are not at all clear. Pictorial depictions show such men with oriental reflexive bows, pointed helmet and stale armour. Presentation of this gladiatorial category in the amphitheatre must have entailed great risks tor the public, in view of the long range of such bows (about 200 metres) since shots could easily have missed their aim or ricocheted. Very special security measures would have had to be taken.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Samnis -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Samnis">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
+        <rdfs:comment xml:lang="en">Samnis: gladiatorial category for which there is evidence only in the republican period. He was probably the predecessor of the murmillo and secutor. The name refers to the Italian Samnite tribe overcome by the Romans in the third century BC.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Secutor -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Secutor">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
+        <rdfs:comment xml:lang="en">Secutor, gladiatorial category (also called contraretiarius), a variant of the murmillo and as such specially designed to fight a retiarius. The difference between the murmillo and the secutor was the latter&apos;s helmet, completely enclosing the face except for small eyeholes in order to avoid offering any point of attack for the trident of the retiarius.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Thraex -->
+
+    <owl:NamedIndividual rdf:about="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#Thraex">
+        <rdf:type rdf:resource="https://raw.githubusercontent.com/Fight4ID/Fight4ID/master/ontology/f4id.owl#GladiatorRole"/>
+        <rdfs:comment xml:lang="en">Thraex: gladiatorial category. The &apos;Thracian&apos; wore a brimmed helmet and high greaves over quilted trousers; he carried a small rectangular shield and wore the manica. Armed with a curved sword, he fought chiefly against the murmillo.</rdfs:comment>
+        <oa:hasSource xml:lang="en">Köhne, Eckart, Cornelia Ewigleben, and Ralph Jackson. 2000. Gladiators and caesars: the power of spectacle in ancient Rome. London: British Museum. ISBN: 0714123161 .</oa:hasSource>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
