@@ -5,7 +5,7 @@ from finder import*
 
 app = Flask(__name__)
 
-data = process_data("data.csv")
+data = process_data("data/data.csv")
 
 
 @app.route('/')
