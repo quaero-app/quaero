@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inveniet</title>
+        <meta charset="utf-8" />
+
+        <!--Bootstrap-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+        <style>
+                body {
+                    padding: 0;
+                    margin: 0;
+                }
+                html, body {
+                    height: 100%;
+                }
+                input[type="number"] {
+                -webkit-appearance: textfield;
+                -moz-appearance: textfield;
+                appearance: textfield;
+                }
+    
+                input[type=number]::-webkit-inner-spin-button,
+                input[type=number]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                }
+    
+                .number-input {
+                border: 2px solid #ddd;
+                display: inline-flex;
+                }
+    
+                .number-input,
+                .number-input * {
+                box-sizing: border-box;
+                }
+    
+            </style>
+    <head>
+    <body>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="home.html">
+                      <img src="css\Cavallino.png" width="30" height="40" class="d-inline-block align-top" alt="">
+                      PRANCING HORSE
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                        
+                          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                              <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item">
+                                            <a class="nav-link" href="home.html">
+                                            HOME
+                                            </a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link"  href="career.html">
+                                                CAREER
+                                            </a>
+                                </li>
+                            </ul>
+                          </div>
+                        </nav>
+
+            <form action= "/"  method="POST">
+                    <div class="form-group">
+                      <label for="query">Query</label>
+                      <input type="text" class="form-control" id="query" name="query" placeholder="Enter query">
+                      <small class="form-text text-muted">Multiple boolean operators query (and, or, not)</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            
+    </body>
+    <footer class="footer bg-secondary text-white" style="margin-bottom: 0px;margin-top: 30px; padding: 20px">
+            
+                    <div class="container-fluid text-center py-2" style="font-size: 80%">
+                            <div  style="margin-bottom: 10px">
+                                    <b>Powered by:</b>
+                                    <a href="http://visjs.org/" class="text-light">Visjs</a>, 
+                                    <a href="https://getbootstrap.com/" class="text-light">Bootstrap</a>, 
+                                    <a href="https://leafletjs.com/" class="text-light">Leaflet</a>, 
+                                    <a href="https://www.chartjs.org/" class="text-light">Chartjs</a>
+                            </div>
+                              
+                    
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br /> <p style="margin: 0px; font-size: 8pt">This work is licensed under a <a style="color: grey;" rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a></p>
+         </footer>
+</html>

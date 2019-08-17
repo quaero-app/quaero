@@ -19,7 +19,10 @@ def do_search(data, query,  partial_res):
         query1 = subquery[0]
         query2 = subquery[1]
         result_query1 = do_search(data, query1, partial_res)
-        return do_search(data, query2, result_query1)
+        if result_query1 == []:
+            return result_query1
+        else:
+            return do_search(data, query2, result_query1)
 
     # OR
     elif " or " in query:
@@ -63,10 +66,10 @@ def do_search(data, query,  partial_res):
 
 
 def geojsonize (data):
-    geo = dict()
-    geo["type"] = "FeatureCollection"
 
-    new_list = list()
+    min = 10000
+    max = -10000
+    geo_list = list()
     for dictionary in data:
         newdict = dict()
         propdict = dict()
@@ -80,14 +83,22 @@ def geojsonize (data):
         propdict["id"] = dictionary["id"]
         propdict["place_name"] = dictionary["place_name"]
 
-        geomdict["coordinates"] = dictionary["coordinates"]
+        coordinates = list()
+        coordinates.append(float(dictionary["lat"]))
+        coordinates.append(float(dictionary["lng"]))
+
+        geomdict["coordinates"] = coordinates
         geomdict["type"] = "Point"
 
         newdict["properties"] = propdict
         newdict["geometry"] = geomdict
         newdict["type"] = "Feature"
-        new_list.append(newdict)
+        geo_list.append(newdict)
 
-    geo["features"] = new_list
+        if propdict["start"] < min:
+            min = propdict["start"]
+        if propdict["end"] > max:
+            max = propdict["end"]
 
-    return geo
+
+    return geo_list, min, max
