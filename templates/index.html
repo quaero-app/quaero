@@ -27,6 +27,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.5.0"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.js"></script>
         
 
         {% endif %}
@@ -69,7 +70,7 @@
     <body>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="home.html">
-                      <!--<img src="css\Cavallino.png" width="30" height="40" class="d-inline-block align-top" alt="">-->
+                      <img src="static\css\research.svg" width="50" height="50" class="d-inline-block align-top" alt="">
                       InvenIO
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +80,7 @@
                           <div class="collapse navbar-collapse" id="navbarSupportedContent">
                               <ul class="navbar-nav mr-auto">
                                     <li class="nav-item">
-                                            <a class="nav-link" href="home.html">
+                                            <a class="nav-link" href="{{ url_for('index') }}">
                                             HOME
                                             </a>
                                     </li>
@@ -111,16 +112,25 @@
         <!--step results-->
         {% if step == "results" %}
             <a href="{{ url_for('index') }}">  <button class="btn btn-secondary" type="button">BACK for a new Query</button></a>
+
+            
+
             {% if output %}
+            <div>Query: "{{ query }}"</div>
+            <div>Total documents: {{ output|length }}</div>
+            <div id="downloadcontainer"></div>
+
                 <div class="row">
                         <div class="col-md-6">
                                 <div id="map" style="height: 500px;" ></div>
                         </div>
                         <div class="col-md-6" >
                                 <div style="margin-right: auto; margin-left: auto; width: 90%; margin-bottom: 10px; text-align: center;">
+                                    <div id="counter"></div>
                                         <button class="timevent" id="prev"><</button>
-                                            DATE: <input type="number" min='{{ min }}' max= '{{ max }}' step="1" id="input-date"> A.D.
+                                            DATE: <input type="number" min='{{ min }}' max= '{{ max }}' step="1" id="input-date"> <span id="dateprefix"></span>
                                         <button class="timevent" id="next">></button>
+                                        <div id="datestat"></div>
                                 </div>
                                 <div id="timeline" style="margin-right:10px; margin-left: 10px"></div>
                                 <div id="chartcontainer">
@@ -157,7 +167,8 @@
      {% if output %}
 
     <script>
-            
+
+
     $( document ).ready(function() {
 
 
@@ -180,14 +191,25 @@
         basemap_0.addTo(map);
 
 
-        var epigraphs = JSON.parse('{{ output | tojson | safe }}');     
+        var epigraphs = JSON.parse('{{ output | tojson | safe }}'); 
+
+
+        function acdc(str)
+        {
+            if (str.includes("-")){
+                return str.replace("-","") + " B.C."
+            }
+            else{
+                return str + " A.D."
+            }
+        }    
 
 
         function pop_epigraphs(feature, layer) {
             var popupContent = '<b>ID: ' + "<a href='" + String(feature.properties['epigraph']) + "'>" + String(feature.properties['id']) + '</a></b>' +
                                '<br> <b>Text:</b> ' + String(feature.properties['text']) +
                                '<br> <b>Place:</b> ' +  "<a href='" + String(feature.properties['place']) + "'>" + String(feature.properties['place_name']) + '</a>' +
-                               '<br> <b>Period:</b> ' + String(feature.properties['start']) + " - " + String(feature.properties['end']) + " A.D.";
+                               '<br> <b>Period:</b> ' + acdc(String(feature.properties['start'])) + " - " + acdc(String(feature.properties['end'])) ;
 
             layer.bindPopup(popupContent);
         }
@@ -252,6 +274,7 @@
         var datemax = 0
         var items = []
         var labels = []
+        var sum = 0
 
         for (var date = parseInt('{{ min }}'); date <= parseInt('{{ max }}'); date++) {
             count = 0
@@ -262,10 +285,14 @@
             })
             if (date != 0){
                 if (count > datemax){ datemax = count}
+                sum += count
                 labels.push(date)
                 items.push( count)
             }
         }
+
+        var leng = labels.length
+        avg = Math.round(sum / leng)
 
         
         
@@ -343,7 +370,26 @@
               },
               tooltips: {
                 enabled: false,
-            }
+              },
+              annotation: {
+                annotations: [{
+                    drawTime: 'beforeDatasetsDraw',
+                    type: 'line',
+                    mode: 'horizontal',
+                    scaleID: 'y-axis-0',
+                    value: avg,
+                    borderColor: 'rgb(0, 0, 0)',
+                    borderWidth: 0.5,
+                    label: {
+                        backgroundColor: 'rgba(0,0,0,0.0)',
+                        fontColor: 'rgb(0, 0, 0)',
+                        position: "right",
+                        enabled: true,
+                        yAdjust: -8,
+                        content: 'Avg: ' + avg
+                    }
+                }]
+                }
             },
             data: {
                 labels: labels,
@@ -393,9 +439,37 @@
         dateindex = labels.indexOf(parseInt(date))
         chart.update()
 
+        $('#dateprefix').html(function(){
+            if (date < 0){
+                return "B.C."
+            }
+            else{
+                return "A.D."
+            }
+        })
+
+        numberdoc = items[dateindex]
+        totaldoc = epigraphs.length
+        percentage = (numberdoc/totaldoc * 100).toFixed(2)
+
+        function plural(){ if (numberdoc > 1){ return "s "} else{ return " "}}
+        $('#datestat').html(numberdoc + " document" + plural() + "out of " + totaldoc + " ("+ percentage + "%)")
 
         })
-    })
+
+        var datadown = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSON.parse('{{ json | tojson | safe }}')));
+        var a = document.createElement('a');
+        var button = document.createElement('button')
+        a.href = 'data:' + datadown;
+        a.download = 'invenio_data.json';
+        button.className = "btn btn-secondary";
+        button.type ="button"
+        button.innerHTML = 'download JSON'
+        a.appendChild(button)
+
+        var container = document.getElementById('downloadcontainer');
+        container.appendChild(a);
+            })
 
     </script>
     {% endif %}

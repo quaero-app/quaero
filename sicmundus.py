@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response, session
 from finder import*
 
 
@@ -6,7 +6,6 @@ from finder import*
 app = Flask(__name__)
 
 data = process_data("data/data.csv")
-
 
 @app.route('/')
 def index():
@@ -20,10 +19,9 @@ def inveniet():
     research = do_search(data, queryfield, None)
     if len(research) > 0:
         dataready, min, max = geojsonize(research)
-        return render_template("index.html", output=dataready, min = min, max = max, step="results")
+        return render_template("index.html", output=dataready, min = min, max = max, step="results", query= queryfield, json=research)
     else:
         return render_template("index.html", output=None, step="results")
-
 
 @app.after_request
 def after_request(response):
