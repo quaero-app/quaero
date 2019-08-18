@@ -68,6 +68,7 @@
  
     </head>
     <body>
+            
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="home.html">
                       <img src="static\css\research.svg" width="50" height="50" class="d-inline-block align-top" alt="">
@@ -202,12 +203,22 @@
             else{
                 return str + " A.D."
             }
-        }    
+        }
+        function popupstring(str, uri){
+            if (str.length <= 400)
+            {
+                return str
+            }
+            else
+            {
+                return str.slice(0, 350) + " <a href='" + uri + "'  target='_blank'>(continue reading)</a>"
+            }
+        }   
 
 
         function pop_epigraphs(feature, layer) {
-            var popupContent = '<b>ID: ' + "<a href='" + String(feature.properties['epigraph']) + "'>" + String(feature.properties['id']) + '</a></b>' +
-                               '<br> <b>Text:</b> ' + String(feature.properties['text']) +
+            var popupContent = '<b>ID: ' + "<a href='" + String(feature.properties['epigraph']) + "'  target='_blank'>" + String(feature.properties['id']) + '</a></b>' +
+                               '<br> <b>Text:</b> ' + popupstring(String(feature.properties['text']), String(feature.properties['epigraph'])) +
                                '<br> <b>Place:</b> ' +  "<a href='" + String(feature.properties['place']) + "'>" + String(feature.properties['place_name']) + '</a>' +
                                '<br> <b>Period:</b> ' + acdc(String(feature.properties['start'])) + " - " + acdc(String(feature.properties['end'])) ;
 
@@ -457,6 +468,20 @@
 
         })
 
+        $("#chart").click( function(evt){
+                var activePoints = chart.getElementsAtXAxis(evt);           
+                if (activePoints[0]) {
+                    clickindex = activePoints[0]._index
+                    dateclick = labels[clickindex]
+                    monoslider.noUiSlider.set(dateclick)
+                }
+            }
+        ); 
+
+
+
+        //download json
+
         var datadown = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSON.parse('{{ json | tojson | safe }}')));
         var a = document.createElement('a');
         var button = document.createElement('button')
@@ -469,7 +494,7 @@
 
         var container = document.getElementById('downloadcontainer');
         container.appendChild(a);
-            })
+    })
 
     </script>
     {% endif %}

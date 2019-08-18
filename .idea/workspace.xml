@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e29c5279-2290-46ec-9705-d8a702ac4fd1" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/finder.py" afterPath="$PROJECT_DIR$/finder.py" />
-      <change beforePath="$PROJECT_DIR$/sicmundus.py" afterPath="$PROJECT_DIR$/sicmundus.py" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,7 +26,7 @@
       <file leaf-file-name="sicmundus.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sicmundus.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="90">
               <caret line="21" column="133" lean-forward="false" selection-start-line="21" selection-start-column="133" selection-end-line="21" selection-end-column="133" />
               <folding>
                 <element signature="e#0#68#0" expanded="true" />
@@ -274,7 +271,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sicmundus.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
+        <state relative-caret-position="90">
           <caret line="21" column="133" lean-forward="false" selection-start-line="21" selection-start-column="133" selection-end-line="21" selection-end-column="133" />
           <folding>
             <element signature="e#0#68#0" expanded="true" />
