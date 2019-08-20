@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"/></script>
+
 
 
         {% if output %}
@@ -16,8 +18,6 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"/></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"/></script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.js"/></script>
@@ -34,127 +34,157 @@
 
 
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="static/css/main.css"/>
  
-<style>
-            body {
-                padding: 0;
-                margin: 0;
-            }
-            html, body {
-                height: 100%;
-            }
-            input[type="number"] {
-            -webkit-appearance: textfield;
-            -moz-appearance: textfield;
-            appearance: textfield;
-            }
 
-            input[type=number]::-webkit-inner-spin-button,
-            input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            }
-
-            .number-input {
-            border: 2px solid #ddd;
-            display: inline-flex;
-            }
-
-            .number-input,
-            .number-input * {
-            box-sizing: border-box;
-            }
-
-        </style>
  
     </head>
-    <body>
+    <body style="background-color:  #494949">
             
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="home.html">
-                      <img src="static\css\research.svg" width="50" height="50" class="d-inline-block align-top" alt="">
-                      InvenIO
-                    </a>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-transparent" style="position: absolute">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                          </button>
-                        
-                          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                              <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item">
-                                            <a class="nav-link" href="{{ url_for('index') }}">
-                                            HOME
-                                            </a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link"  href="career.html">
-                                                DOCUMENTATION
-                                            </a>
-                                </li>
-                            </ul>
-                          </div>
-                        </nav>
-
-
-        <div class="container-fluid" style="margin-top: 30px">
-        
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    {% if step == "results" %}
+                    <a class="navbar-brand navbar-right" href="#" style="margin-left:15px">inven<b class="text-white">IO</b></a>
+                    {% endif %}
+                  
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                          <a class="nav-link" href="#">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">DOCUMENTATION</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="#">GITHUB</a>
+                        </li>
+                      </ul>
+                    </div>
+            </nav>
         
         <!--step query-->
         {% if step == "query" %}
-        <form action= "/"  method="POST">
-            <div class="form-group">
-              <label for="query">Query</label>
-              <input type="text" class="form-control" id="query" name="query" placeholder="Enter query" pattern="[a-zA-Z ]+" required>
-              <small class="form-text text-muted">Multiple boolean operators query (and, or, not)</small>
+        <div id="headercontainer" class="container-fluid">
+                <div id="header" class="row bg-dark" style="background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('static/css/background.jpg'); background-size: 100%; background-repeat: no-repeat;">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6" >
+                                <h1 class="text-light" >inven<b class="text-white">IO</b></h1>
+                                <form action="" action= "/"  method="POST">
+                                        <div class="input-group">
+                                            <input autocomplete="false" style="color:white; background-color: rgba(1,1,1,0.4) !important;" type="text" class="form-control" id="s" name="query" placeholder="Enter query" pattern="[a-zA-Z ]+" required>
+                                            <span class="input-group-btn">
+                                            <input id="fire" type="submit" name="commit" value="Search" class="btn btn-primary" data-disable-with="Search">
+                                          </span> 
+                                        </div>
+                                        <small id="new" class="form-text"><a style="color:beige" href="#tutorial">New to Boolean queries?</a></small>
+            
+                                </form>
+            
+                        </div>
+                    <div class="col-md-3"></div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-secondary">Submit</button>
-        </form>
+            <div class="container">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div id="tutorial" class="col-8 bg-light" align=justify style="padding-top: 25px; padding-bottom: 50px">
+                            <h4>New to Boolean Queries?</h4>
+                            <div>
+                                <p>
+                                        Boolean Search is a type of query that combine keywords and Boolean operators (AND, OR and NOT) to refine results.
+                                </p>
+                                <div style="margin-left: 25px; margin-right: 25px">
+                                    <h6>AND</h6>
+                                    <p>Ex: <b>"titius AND gaius"</b> This query will retrieve all documents having both "titius" and "gaius".</p>
+                                    <h6>OR</h6>
+                                    <p>Ex: <b>"caesar OR nihil"</b> This query will retrieve all documents containing the word "caesar" or containing the word "nihil" or both.</p>
+                                    <h6>NOT</h6>
+                                    <p>Ex: <b>"NOT olet"</b> This query will retrieve all documents except except for those who contain the word "olet".</p>
+                                    
+                                    <h4 style="margin-top:40px">Combine Operators</h4>
+                                    <p>Boolean search operators can be used in any combination, but there is an order in which the operations are executed: </p>
+                                        <ul>
+                                            <li>First all NOT operators,</li>
+                                            <li>Then all OR operators,</li>
+                                            <li>Finally all AND operators</li>
+                                        </ul> 
+                                    <p>Ex. <b>"imperator AND tiberius OR imperator AND NOT nero"</b> will be executed in the following order: imperator AND (tiberius OR imperator) AND (NOT Nero)</p>
+                                </div>
+                                <h4 style="margin-top:60px">Use Case: Find the IX Legion</h4>
+                                <textarea id="demoval" style="width: 100%; height: 80px; resize:none; margin-top:10px; margin-bottom:5px" readonly>legio OR legionis OR legioni OR legionem OR legione AND ix OR viiii AND hispana OR hispanae OR hispanam</textarea>
+                                <p>This query combines (AND) 3 sub-queries:</p>
+                                <ul>
+                                        <li><b>"legio OR legionis OR legioni OR legionem OR legione"</b>: query the noun "legio" in all possible declension cases.</li>
+                                        <li><b>"ix OR viiii"</b>: query the number 9.</li>
+                                        <li><b>"hispana OR hispanae OR hispanam"</b>: query the adjective "hispana" in all possible declension cases.</li>
+                                </ul> 
+                                <button id="demo" class="btn btn-secondary">Try this query</button>
+                            
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+            <script>
+                    $("#demo").on("click", function() {
+                        $("#inputmain").val($("#demoval").val()),
+                        $("#fire").click()
+                    })
+            </script>   
         {% endif %}
+
 
         <!--step results-->
         {% if step == "results" %}
-            <a href="{{ url_for('index') }}">  <button class="btn btn-secondary" type="button">BACK for a new Query</button></a>
+        <div style="background-color:#323232; height:55px"></div>
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 bg-secondary">
+                    <a href="{{ url_for('index') }}">  <button style="margin: 15px" class="btn btn-dark" type="button"><b><</b> BACK for a new Query</button></a>
+            </div>
+            <div class="col-md-6" style="padding: 25px">
+                    {% if output %}
+                    <div class="text-white" style="padding: 3px">Query: <span style="color:rgba(255,255,255,.5);">"{{ query }}"</span></div>
+                    <div id="downloadcontainer" class="text-white" style="padding: 3px">Total documents: <span style="color:rgba(255,255,255,.5);">{{ output|length }}</span></div>
+                    {% else %}
+                    <div class="text-white" style="padding: 3px">NO RESULTS</div>
+                    {% endif %}
+            </div>
+            <div class="col-md-3 bg-secondary"></div>
+        </div>
 
-            
-
-            {% if output %}
-            <div>Query: "{{ query }}"</div>
-            <div>Total documents: {{ output|length }}</div>
-            <div id="downloadcontainer"></div>
-
-                <div class="row">
-                        <div class="col-md-6">
-                                <div id="map" style="height: 500px;" ></div>
-                        </div>
-                        <div class="col-md-6" >
-                                <div style="margin-right: auto; margin-left: auto; width: 90%; margin-bottom: 10px; text-align: center;">
-                                    <div id="counter"></div>
-                                        <button class="timevent" id="prev"><</button>
-                                            DATE: <input type="number" min='{{ min }}' max= '{{ max }}' step="1" id="input-date"> <span id="dateprefix"></span>
-                                        <button class="timevent" id="next">></button>
-                                        <div id="datestat"></div>
-                                </div>
-                                <div id="timeline" style="margin-right:10px; margin-left: 10px"></div>
-                                <div id="chartcontainer">
-                                <canvas id="chart"></canvas>
-                            </div>
-                        </div>
+        {% if output %}
+        <div class="row bg-light" style="padding-top: 20px">
+                <div class="col-md-6">
+                        <div id="map" style="height: 500px; margin-bottom: 15px" ></div>
                 </div>
-            {% else %}
-             NO RESULTS
-            {% endif %}
+                <div class="col-md-6" style="margin-top: 10px;">
+                        <div style="margin-right: auto; margin-left: auto; width: 90%; margin-bottom: 10px; text-align: center;">
+                            <div id="counter"></div>
+                                <button class="btn btn-dark timevent" id="prev"><</button>
+                                    DATE: <input type="number" min='{{ min }}' max= '{{ max }}' step="1" id="input-date"> <span id="dateprefix"></span>
+                                <button class="btn btn-dark timevent" id="next">></button>
+                                <div id="datestat"></div>
+                        </div>
+                        <div id="timeline" style="margin-right:10px; margin-left: 10px"></div>
+                        <div id="chartcontainer">
+                        <canvas id="chart"></canvas>
+                    </div>
+                </div>
+        </div>
+        {% endif %}
+        </div>
         {% endif %}
 
-
-
-        </div>
     
 
-        <footer class="footer bg-secondary text-white" style="margin-bottom: 0px;margin-top: 30px; padding: 20px">
+        <footer class="footer bg-dark text-white" style="margin-bottom: 0px;padding-top: 80px; padding: 20px">
             
                 <div class="container-fluid text-center py-2" style="font-size: 80%">
                         <div  style="margin-bottom: 10px">
                                 <b>Powered by:</b>
-                                <a href="http://visjs.org/" class="text-light">Visjs</a>, 
                                 <a href="https://getbootstrap.com/" class="text-light">Bootstrap</a>, 
                                 <a href="https://leafletjs.com/" class="text-light">Leaflet</a>, 
                                 <a href="https://www.chartjs.org/" class="text-light">Chartjs</a>
@@ -205,13 +235,13 @@
             }
         }
         function popupstring(str, uri){
-            if (str.length <= 400)
+            if (str.length <= 300)
             {
                 return str
             }
             else
             {
-                return str.slice(0, 350) + " <a href='" + uri + "'  target='_blank'>(continue reading)</a>"
+                return str.slice(0, 300) + " <a href='" + uri + "'  target='_blank'>(continue reading)</a>"
             }
         }   
 
@@ -484,13 +514,12 @@
 
         var datadown = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSON.parse('{{ json | tojson | safe }}')));
         var a = document.createElement('a');
-        var button = document.createElement('button')
+        var img = document.createElement('img')
         a.href = 'data:' + datadown;
         a.download = 'invenio_data.json';
-        button.className = "btn btn-secondary";
-        button.type ="button"
-        button.innerHTML = 'download JSON'
-        a.appendChild(button)
+        a.style ="margin-left: 5px;"
+        a.innerHTML="(Download Json Dataset)"
+
 
         var container = document.getElementById('downloadcontainer');
         container.appendChild(a);

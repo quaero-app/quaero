@@ -1,0 +1,71 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+input[type="number"] {
+-webkit-appearance: textfield;
+-moz-appearance: textfield;
+appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+}
+
+.number-input {
+border: 2px solid #ddd;
+display: inline-flex;
+}
+
+.number-input,
+.number-input * {
+box-sizing: border-box;
+}
+
+@media (max-width:600px)  {
+  #header h1 {    
+      font-size: 1.5em;
+      margin-bottom: 10px
+  }           
+  #header {
+      padding-top: 150px;
+      padding-bottom: 30px; 
+  }
+}
+@media (min-width:600px)  {
+  #header h1 {    
+      font-size: 2em;
+      margin-bottom: 10px
+  }            
+  #header {
+      padding-top: 110px;
+      padding-bottom: 130px; 
+  }
+}
+@media (min-width:1025px)  {
+  #header h1 {    
+      font-size: 2.5em;
+      margin-bottom: 10px
+  }
+  #headercontainer {
+      height: 100%
+  }     
+   #header {
+      height:100%;
+      padding-top: 20%;
+      padding-bottom: 230px; 
+  }
+  }
+
+  
+  @media (max-width:767px)  {
+    #map{
+      height: 350px !important;
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+  }
