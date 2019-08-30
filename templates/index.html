@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="shortcut icon" type="image/png" href="static/css/research.png"/>
         <title>Invenio</title>
         <meta charset="utf-8" />
 
         <!--Bootstrap-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"/></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap/bootstrap.min.css') }}">
+        <!--<script src="{{url_for('static', filename='somejavascriptfile.js')}}"></script>-->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
 
 
 
         {% if output %}
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='lib/leaflet/leaflet.css') }}">
         <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='lib/leaflet/MarkerCluster.Default.css') }}">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"/></script>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.css"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='lib/nouislider/nouislider.css') }}">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.js"/></script>
-
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.1.0/wNumb.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
@@ -41,24 +42,40 @@
     </head>
     <body style="background-color:  #494949">
             
-            <nav class="navbar navbar-expand-lg navbar-dark bg-transparent" style="position: absolute">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                    {% if step == "results" %}
-                    <a class="navbar-brand navbar-right" href="#" style="margin-left:15px">inven<b class="text-white">IO</b></a>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-transparent" style=" z-index:1000">
+                    {% if step != "query" %}
+                    <a class="navbar-brand" href="/" style="margin-left:15px">inven<b class="text-white">IO</b></a>
                     {% endif %}
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                    
                   
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                       <ul class="navbar-nav mr-auto">
+                        {% if step == "query" %}
                         <li class="nav-item active">
-                          <a class="nav-link" href="#">HOME</a>
+                        {% else %}
+                        <li class="nav-item">
+                        {% endif %}
+                          <a class="nav-link" href="/">HOME</a>
+                        </li>
+                        {% if step == "documentation" %}
+                        <li class="nav-item active">
+                        {% else %}
+                        <li class="nav-item">
+                        {% endif %}
+                          <a class="nav-link" href="/documentation">DOCUMENTATION</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">DOCUMENTATION</a>
+                                <a style="color: rgba(255,255,255,.5) !important" class="nav-link" target="_blank" href="https://github.com/Inveniet/Inveniet">GITHUB</a>
                         </li>
+                        {% if step == "about" %}
+                        <li class="nav-item active">
+                        {% else %}
                         <li class="nav-item">
-                                <a class="nav-link" href="#">GITHUB</a>
+                        {% endif %}
+                                <a class="nav-link" href="/about">ABOUT</a>
                         </li>
                       </ul>
                     </div>
@@ -66,74 +83,172 @@
         
         <!--step query-->
         {% if step == "query" %}
-        <div id="headercontainer" class="container-fluid">
-                <div id="header" class="row bg-dark" style="background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('static/css/background.jpg'); background-size: 100%; background-repeat: no-repeat;">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6" >
-                                <h1 class="text-light" >inven<b class="text-white">IO</b></h1>
-                                <form action="" action= "/"  method="POST">
-                                        <div class="input-group">
-                                            <input autocomplete="false" style="color:white; background-color: rgba(1,1,1,0.4) !important;" type="text" class="form-control" id="s" name="query" placeholder="Enter query" pattern="[a-zA-Z ]+" required>
-                                            <span class="input-group-btn">
-                                            <input id="fire" type="submit" name="commit" value="Search" class="btn btn-primary" data-disable-with="Search">
-                                          </span> 
+            <div class="container-fluid">
+                <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8" id="imgcont">
+                                <img src="static\css\background1.png" style="width: 100%; color: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) )"/>
+                        </div>
+                        <div class="col-md-2"></div>
+                </div>
+                <div class="row bg-dark">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8" style="padding-top: 10px; padding-bottom:30px">
+                                    <h1 class="text-light" style="padding-top:10px">inven<b class="text-white">IO</b></h1>
+                                    <h5 style="color: rgba(255,255,255,.5); padding-bottom:10px">Epigraphic Boolean Search Engine</h5>
+                                    <form action= "/query"  method="POST" onsubmit="$('#load').modal('show')">
+                                            <div class="input-group">
+                                                <input id="inputmain" autocomplete="false" style="color:white; background-color: rgba(1,1,1,0.4) !important;" type="text" class="form-control" id="s" name="query" placeholder="Enter query" pattern="[a-zA-Z ]+" required>
+                                                <span class="input-group-btn">
+                                                <input id="fire" type="submit" name="commit" value="Search" class="btn btn-secondary" style="border-radius: 0rem .25rem .25rem 0rem !important" data-disable-with="Search">
+                                            </span> 
+                                            </div>
+                                            <h6 style="margin-top:10px"><a href="" data-toggle="modal" data-target="#tutorial">New to Boolean Search?</a></h6>
+            
+                                    </form>
+
+                            </div>
+                            <div class="col-md-2"></div>
+                </div>
+                <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                                <div class="accordion bg-light" id="accordionExample">
+                                        <div class="card">
+                                          <div class="card-header" id="headingOne">
+                                            <h2 class="mb-0">
+                                              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <h5 class="text-dark">Use Case I: The Eagle of the Ninth</h5>
+                                              </button>
+                                            </h2>
+                                          </div>
+                                      
+                                          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                    <p>In this example <b>Invenio</b> will find all documents about the Legio IX Hispana (also written Legio nona Hispana or Legio VIIII Hispana), a legion of the Imperial Roman army.</p>
+                                                    <textarea id="demoval1" style="width: 100%; height: 80px; resize:none; margin-top:10px; margin-bottom:5px" readonly>legio OR legionis OR legioni OR legionem OR legione AND ix OR viiii OR nona OR nonae OR nonam AND hispana OR hispanae OR hispanam</textarea>
+                                                    <p>This query combines (AND) 3 sub-queries:</p>
+                                                    <ul>
+                                                            <li><b>"legio OR legionis OR legioni OR legionem OR legione"</b>: query the noun "legio" in all possible declension cases.</li>
+                                                            <li><b>"ix OR viiii or nona or nonae or nonam"</b>: query the number 9 both roman numbers and in words (any declension cases).</li>
+                                                            <li><b>"hispana OR hispanae OR hispanam"</b>: query the adjective "hispana" in all possible declension cases.</li>
+                                                    </ul> 
+                                                    <button id="demo1" class="btn btn-secondary">Try this query</button>
+                                            </div>
+                                          </div>
                                         </div>
-                                        <small id="new" class="form-text"><a style="color:beige" href="#tutorial">New to Boolean queries?</a></small>
-            
-                                </form>
-            
-                        </div>
-                    <div class="col-md-3"></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                        <div class="col-md-2"></div>
-                        <div id="tutorial" class="col-md-8 bg-dark text-white" style="padding-top: 25px; padding-bottom:10px"><h4>New to Boolean Queries?</h4></div>
-                        <div class="col-md-2"></div>
-                </div>
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-8 bg-light" align=justify style=" padding-bottom: 50px">
-                            <div>
-                                <p>
-                                        Boolean Search is a type of query that combine keywords and Boolean operators (AND, OR and NOT) to refine results.
-                                </p>
-                                <div style="margin-left: 25px; margin-right: 25px">
-                                    <h6>AND</h6>
-                                    <p>Ex: <b>"titius AND gaius"</b> This query will retrieve all documents having both "titius" and "gaius".</p>
-                                    <h6>OR</h6>
-                                    <p>Ex: <b>"caesar OR nihil"</b> This query will retrieve all documents containing the word "caesar" or containing the word "nihil" or both.</p>
-                                    <h6>NOT</h6>
-                                    <p>Ex: <b>"NOT olet"</b> This query will retrieve all documents except except for those who contain the word "olet".</p>
-                                    
-                                    <h4 style="margin-top:40px">Combine Operators</h4>
-                                    <p>Boolean search operators can be used in any combination, but there is an order in which the operations are executed: </p>
-                                        <ul>
-                                            <li>First all NOT operators,</li>
-                                            <li>Then all OR operators,</li>
-                                            <li>Finally all AND operators</li>
-                                        </ul> 
-                                    <p>Ex. <b>"imperator AND tiberius OR imperator AND NOT nero"</b> will be executed in the following order: imperator AND (tiberius OR imperator) AND (NOT Nero)</p>
+                                        <div class="card">
+                                          <div class="card-header" id="headingTwo">
+                                            <h2 class="mb-0">
+                                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    <h5 class="text-dark">Use Case II: Here Comes the Sun</h5>
+                                              </button>
+                                            </h2>
+                                          </div>
+                                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                    <p>In this example <b>Invenio</b> will find all documents about Mithras (also written Mitras or Mitrhas), a deity of the Roman Empire</p>
+                                                    <textarea id="demoval2" style="width: 100%; height: 80px; resize:none; margin-top:10px; margin-bottom:5px" readonly>mithras OR mithrae OR mithram OR mithra OR mitras OR mitrae OR mitram OR mihra OR mitrhas OR mitrhae OR mitrham OR mitrha</textarea>
+                                                    <p>This query retrieve the word mithras in any form and declension:</p>
+                                                    <ul>
+                                                            <li><b>"mithras OR mithrae OR mithram OR mithra"</b>: query the noun "mithras" in all possible declension cases.</li>
+                                                            <li><b>"mitras OR mitrae OR mitram OR mitra"</b>: query the noun "mitras" in all possible declension cases.</li>
+                                                            <li><b>"mitrhas OR mitrhas OR mitrham OR mitrha</b>: query the noun "mitrhas" in all possible declension cases.</li>
+                                                    </ul> 
+                                                    <button id="demo2" class="btn btn-secondary">Try this query</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="card">
+                                          <div class="card-header" id="headingThree">
+                                            <h2 class="mb-0">
+                                              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    <h5 class="text-dark">Use Case III: The Lady</h5>
+                                              </button>
+                                            </h2>
+                                          </div>
+                                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                    <p>In this example <b>Invenio</b> will find all documents about Iulia Domna (160–217 AD), a powerfull Roman Empress.</p>
+                                                    <textarea id="demoval3" style="width: 100%; height: 80px; resize:none; margin-top:10px; margin-bottom:5px" readonly>iulia OR iuliae OR iuliam AND domna OR domnae OR domnam</textarea>
+                                                    <p>This query combines (AND) 2 sub-queries:</p>
+                                                    <ul>
+                                                            <li><b>"iulia or iuliae or iuliam"</b>: query the <i>nomen</i> "iulia" in all possible declension cases.</li>
+                                                            <li><b>"domna or domnae or domnam"</b>: query the <i>cognomen</i> "domna" in all possible declension cases.</li>
+                                                    </ul> 
+                                                    <button id="demo3" class="btn btn-secondary">Try this query</button>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                                            
+                                                </div>
+                                          </div>
+                                        </div>
                                 </div>
-                                <h4 style="margin-top:60px">Use Case: Find the IX Legion</h4>
-                                <textarea id="demoval" style="width: 100%; height: 80px; resize:none; margin-top:10px; margin-bottom:5px" readonly>legio OR legionis OR legioni OR legionem OR legione AND ix OR viiii AND hispana OR hispanae OR hispanam</textarea>
-                                <p>This query combines (AND) 3 sub-queries:</p>
-                                <ul>
-                                        <li><b>"legio OR legionis OR legioni OR legionem OR legione"</b>: query the noun "legio" in all possible declension cases.</li>
-                                        <li><b>"ix OR viiii"</b>: query the number 9.</li>
-                                        <li><b>"hispana OR hispanae OR hispanam"</b>: query the adjective "hispana" in all possible declension cases.</li>
-                                </ul> 
-                                <button id="demo" class="btn btn-secondary">Try this query</button>
-                            
                         </div>
-                    </div>
-                    <div class="col-2"></div>
+                        <div class="col-md-2"></div>
                 </div>
             </div>
+
+
+                <!-- Modal Tutorial-->
+                <div class="modal fade" id="tutorial" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">New to Boolean Search?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                        <p>
+                                                Boolean Search is a type of query that combine keywords and Boolean operators (AND, OR and NOT) to refine results.
+                                        </p>
+                                        <div style="margin-left: 25px; margin-right: 25px">
+                                            <h6>AND</h6>
+                                            <p>Ex: <b>"titius AND gaius"</b> This query will retrieve all documents having both "titius" and "gaius".</p>
+                                            <h6>OR</h6>
+                                            <p>Ex: <b>"caesar OR nihil"</b> This query will retrieve all documents containing the word "caesar" or containing the word "nihil" or both.</p>
+                                            <h6>NOT</h6>
+                                            <p>Ex: <b>"NOT olet"</b> This query will retrieve all documents except for those who contain the word "olet".</p>
+                                            
+                                            <h4 style="margin-top:40px">Combine Operators</h4>
+                                            <p>Boolean search operators can be used in any combination, but there is an order in which the operations are executed: </p>
+                                                <ul>
+                                                    <li>First all NOT operators,</li>
+                                                    <li>Then all OR operators,</li>
+                                                    <li>Finally all AND operators</li>
+                                                </ul> 
+                                            <p>Ex. <b>"imperator AND tiberius OR imperator AND NOT nero"</b> will be executed in the following order: imperator AND (tiberius OR imperator) AND (NOT nero)</p>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="modal modal-backdrop" id="load" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content" style="background: transparent !important; border: 0 !important">
+                            <div class="loader"></div>
+                          </div>
+                        </div>
+                </div>
+
+                
             <script>
-                    $("#demo").on("click", function() {
-                        $("#inputmain").val($("#demoval").val()),
+                    $("#demo1").on("click", function() {
+                        $("#inputmain").val($("#demoval1").val()),
+                        $("#fire").click()
+                    })
+                    $("#demo2").on("click", function() {
+                        $("#inputmain").val($("#demoval2").val()),
+                        $("#fire").click()
+                    })
+                    $("#demo3").on("click", function() {
+                        $("#inputmain").val($("#demoval3").val()),
                         $("#fire").click()
                     })
             </script>   
@@ -142,46 +257,83 @@
 
         <!--step results-->
         {% if step == "results" %}
-        <div style="background-color:#323232; height:55px"></div>
+        <div class="navbar-support" style="height:60px"></div>
         <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 bg-secondary">
+            <div class="col-md-3">
                     <a href="{{ url_for('index') }}">  <button style="margin: 15px" class="btn btn-dark" type="button"><b><</b> BACK for a new Query</button></a>
             </div>
-            <div class="col-md-6" style="padding: 25px">
+            <div class="col-md-6 bg-dark" style="padding: 25px; border-radius:.3rem .3rem 0 0">
                     {% if output %}
                     <div class="text-white" style="padding: 3px">Query: <span style="color:rgba(255,255,255,.5);">"{{ query }}"</span></div>
                     <div id="downloadcontainer" class="text-white" style="padding: 3px">Total documents: <span style="color:rgba(255,255,255,.5);">{{ output|length }}</span></div>
                     {% else %}
-                    <div class="text-white" style="padding: 3px">NO RESULTS</div>
+                    <div class="text-white" style="padding: 3px">Query: <span style="color:rgba(255,255,255,.5);">"{{ query }}"</span></div>
+                    <div class="text-white" style="padding: 3px; height: 100vh"><h3>NO RESULTS</h3></div>
                     {% endif %}
             </div>
-            <div class="col-md-3 bg-secondary"></div>
+            <div class="col-md-3"></div>
         </div>
 
-        {% if output %}
-        <div class="row bg-light" style="padding-top: 20px">
-                <div class="col-md-6">
-                        <div id="map" style="height: 500px; margin-bottom: 15px" ></div>
-                </div>
-                <div class="col-md-6" style="margin-top: 10px;">
-                        <div style="margin-right: auto; margin-left: auto; width: 90%; margin-bottom: 10px; text-align: center;">
-                            <div id="counter"></div>
-                                <button class="btn btn-dark timevent" id="prev"><</button>
-                                    DATE: <input type="number" min='{{ min }}' max= '{{ max }}' step="1" id="input-date"> <span id="dateprefix"></span>
-                                <button class="btn btn-dark timevent" id="next">></button>
-                                <div id="datestat"></div>
-                        </div>
-                        <div id="timeline" style="margin-right:10px; margin-left: 10px"></div>
-                        <div id="chartcontainer">
-                        <canvas id="chart"></canvas>
+            {% if output %}
+            <div class="row bg-light" style="padding-top: 20px">
+                    {% if min != max %}
+                    <div class="col-md-6">
+                            <div id="map" style="height: 500px; margin-bottom: 15px" ></div>
                     </div>
-                </div>
-        </div>
-        {% endif %}
+                    <div class="col-md-6" style="margin-top: 10px;">
+                            <div style="margin-right: auto; margin-left: auto; width: 90%; margin-bottom: 10px; text-align: center;">
+                                <div id="counter"></div>
+                                    <button class="btn btn-dark timevent" id="prev"><</button>
+                                        DATE: <input type="number" min='{{ min }}' max= '{{ max }}' step="1" id="input-date"> <span id="dateprefix"></span>
+                                    <button class="btn btn-dark timevent" id="next">></button>
+                                    <div id="datestat"></div>
+                            </div>
+                            <div id="timeline" style="margin-right:10px; margin-left: 10px"></div>
+                            <div id="chartcontainer">
+                            <canvas id="chart"></canvas>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                            <div id="map" style="height: 500px; margin-bottom: 15px" ></div>
+                    </div>
+                    <div class="col-md-3"></div>
+                    {% endif %}
+            </div>
+            {% endif %}
         </div>
         {% endif %}
 
+        <!--DOCUMENTATION-->
+        {% if step == "documentation" %}
+        <div class="navbar-support" style=" height:60px"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 "></div>
+                <div class="col-md-6 bg-light" style="border-radius:.3rem .3rem 0 0; padding: 25px">
+                        <h2>Documentation</h2>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        {% endif %}
+
+
+        <!--About-->
+        {% if step == "about" %}
+        <div class="navbar-support" style="height:60px"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 bg-light" style="border-radius:.3rem .3rem 0 0; padding: 25px">
+                        <h2>About</h2>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        {% endif %}
     
 
         <footer class="footer bg-dark text-white" style="margin-bottom: 0px;padding-top: 80px; padding: 20px">
@@ -194,9 +346,7 @@
                                 <a href="https://www.chartjs.org/" class="text-light">Chartjs</a>
                         </div>
                           
-                
-                <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br /> <p style="margin: 0px; font-size: 8pt">This work is licensed under a <a style="color: grey;" rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a></p>
-     </footer>
+                        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a  style="color: grey" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
 
      {% if output %}
@@ -279,6 +429,8 @@
 
         //SLIDER
 
+if ("{{ min }}" != "{{ max }}")
+{
         var monoslider = document.getElementById('timeline');
 
         noUiSlider.create(monoslider, {
@@ -511,7 +663,7 @@
                 }
             }
         ); 
-
+}
 
 
         //download json

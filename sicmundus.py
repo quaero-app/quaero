@@ -11,9 +11,9 @@ data = process_data("data/data.csv")
 def index():
     return render_template('index.html', step= "query")
 
-@app.route('/', methods=['POST'])
+@app.route('/query', methods=['POST'])
 
-def inveniet():
+def query():
     queryfield = request.form['query']
     queryfield = queryfield.lower()
     research = do_search(data, queryfield, None)
@@ -21,7 +21,17 @@ def inveniet():
         dataready, min, max = geojsonize(research)
         return render_template("index.html", output=dataready, min = min, max = max, step="results", query= queryfield, json=research)
     else:
-        return render_template("index.html", output=None, step="results")
+        return render_template("index.html", output=None, query= queryfield, step="results")
+
+
+@app.route('/documentation')
+def documentation():
+    return render_template("index.html", step="documentation")
+
+
+@app.route('/about')
+def about():
+    return render_template("index.html", step="about")
 
 @app.after_request
 def after_request(response):
