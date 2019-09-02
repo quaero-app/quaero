@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e29c5279-2290-46ec-9705-d8a702ac4fd1" name="Default" comment="" />
+    <list default="true" id="e29c5279-2290-46ec-9705-d8a702ac4fd1" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/static/css/background.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/background1 - Copia.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/background1.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/dascontornare bene.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/json.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/main.css" afterPath="$PROJECT_DIR$/static/css/main.css" />
+      <change beforePath="$PROJECT_DIR$/static/css/research.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/research.svg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,21 +21,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="finder.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="finder.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/finder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-441">
               <caret line="3" column="50" lean-forward="false" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sicmundus.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sicmundus.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sicmundus.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="147">
-              <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+              <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
               <folding>
                 <element signature="e#0#68#0" expanded="true" />
               </folding>
@@ -386,21 +396,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/finder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="3" column="50" lean-forward="false" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sicmundus.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
-          <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+          <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
           <folding>
             <element signature="e#0#68#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/finder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-441">
+          <caret line="3" column="50" lean-forward="false" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>

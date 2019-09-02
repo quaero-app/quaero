@@ -52,14 +52,15 @@ box-sizing: border-box;
     }
   }
 
+  
   .loader {
     z-index: 10000;
     margin: auto;
     border: 16px solid #f3f3f3;
     border-radius: 50%;
     border-top: 16px solid #3498db;
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     -webkit-animation: spin 1s linear infinite; /* Safari */
     animation: spin 1s linear infinite;
   }

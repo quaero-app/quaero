@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="shortcut icon" type="image/png" href="static/css/research.png"/>
+        <link rel="shortcut icon" type="image/png" href="static/css/favicon.png"/>
         <title>Invenio</title>
         <meta charset="utf-8" />
 
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap/bootstrap.min.css') }}">
-        <!--<script src="{{url_for('static', filename='somejavascriptfile.js')}}"></script>-->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
-
-
+        <script src="{{url_for('static', filename='lib/jquery/jquery-3.3.1.slim.min.js')}}"></script>
+        <script src="{{url_for('static', filename='lib/bootstrap/popper.min.js')}}"></script>
+        <script src="{{url_for('static', filename='lib/bootstrap/bootstrap.min.js')}}"></script>
 
         {% if output %}
         <link rel="stylesheet" href="{{ url_for('static', filename='lib/leaflet/leaflet.css') }}">
-        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+        <script src="{{url_for('static', filename='lib/leaflet/leaflet.js')}}"></script>
 
         <link rel="stylesheet" href="{{ url_for('static', filename='lib/leaflet/MarkerCluster.Default.css') }}">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"/></script>
+        <script src="{{url_for('static', filename='lib/leaflet/leaflet.markercluster.js')}}"></script>
 
         <link rel="stylesheet" href="{{ url_for('static', filename='lib/nouislider/nouislider.css') }}">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.js"/></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.1.0/wNumb.js"></script>
+        <script src="{{url_for('static', filename='lib/nouislider/nouislider.js')}}"></script>
+        <script src="{{url_for('static', filename='lib/nouislider/wNumb.js')}}"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.5.0"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.js"></script>
+        <script src="{{url_for('static', filename='lib/chartjs/Chart.js')}}"></script>
+        <script src="{{url_for('static', filename='lib/chartjs/chartjs-plugin-datalabels@0.5.0.js')}}"></script>
+        <script src="{{url_for('static', filename='lib/chartjs/chartjs-plugin-annotation.js')}}"></script>
+
         
 
         {% endif %}
 
 
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-        <link rel="stylesheet" href="static/css/main.css"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
  
 
  
@@ -229,7 +226,7 @@
                         </div>
                 </div>
 
-                <div class="modal modal-backdrop" id="load" tabindex="-1" role="dialog">
+                <div class="modal modal-backdrop" id="load" tabindex="1000" role="dialog">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                           <div class="modal-content" style="background: transparent !important; border: 0 !important">
                             <div class="loader"></div>
@@ -265,8 +262,14 @@
             </div>
             <div class="col-md-6 bg-dark" style="padding: 25px; border-radius:.3rem .3rem 0 0">
                     {% if output %}
-                    <div class="text-white" style="padding: 3px">Query: <span style="color:rgba(255,255,255,.5);">"{{ query }}"</span></div>
-                    <div id="downloadcontainer" class="text-white" style="padding: 3px">Total documents: <span style="color:rgba(255,255,255,.5);">{{ output|length }}</span></div>
+                        {% if output|length > 10000 %}
+                        <div class="text-white" style="padding: 3px">Query: <span style="color:rgba(255,255,255,.5);">"{{ query }}"</span></div>
+                        <div id="downloadcontainer" class="text-white" style="padding: 3px">Total documents: <span style="color:rgba(255,255,255,.5);">{{ output|length }}</span></div>
+                        <div class="text-white" style="padding: 3px; height: 100vh"><h3>TOO MANY RESULTS, TRY TO REFINE THE QUERY</h3></div>
+                        {% else %}
+                        <div class="text-white" style="padding: 3px">Query: <span style="color:rgba(255,255,255,.5);">"{{ query }}"</span></div>
+                        <div id="downloadcontainer" class="text-white" style="padding: 3px">Total documents: <span style="color:rgba(255,255,255,.5);">{{ output|length }}</span></div>
+                        {% endif %}
                     {% else %}
                     <div class="text-white" style="padding: 3px">Query: <span style="color:rgba(255,255,255,.5);">"{{ query }}"</span></div>
                     <div class="text-white" style="padding: 3px; height: 100vh"><h3>NO RESULTS</h3></div>
@@ -275,7 +278,7 @@
             <div class="col-md-3"></div>
         </div>
 
-            {% if output %}
+            {% if output and output|length < 10000 %}
             <div class="row bg-light" style="padding-top: 20px">
                     {% if min != max %}
                     <div class="col-md-6">
@@ -368,7 +371,7 @@
 
                         </p>
                         
-                        <p><b>InvenIO</b>, in respect of the abovementioned licenses and the <a href="http://opendefinition.org/" target="_blank">Open Definition principles</a>, has been released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+                        <p><b>InvenIO</b>, in respect to the abovementioned licenses and the <a href="http://opendefinition.org/" target="_blank">Open Definition principles</a>, has been released under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
 
                 </div>
                 <div class="col-md-3"></div>
@@ -391,7 +394,7 @@
                         <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"target="_blank"> <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a  style="color: grey" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
 
-     {% if output %}
+     {% if output and output|length < 10000 %}
 
     <script>
 
@@ -603,7 +606,7 @@ if ("{{ min }}" != "{{ max }}")
                 yAxes: [{
                   display: false,
                   ticks: {
-                      max: datemax + 20
+                      max: datemax + 15 * datemax/ 100
                   }
                 }],
               },
