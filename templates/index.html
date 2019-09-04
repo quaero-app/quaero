@@ -315,8 +315,70 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 "></div>
-                <div class="col-md-6 bg-light" style="border-radius:.3rem .3rem 0 0; padding: 25px">
+                <div class="col-md-6 bg-light" align="justify" style= "border-radius:.3rem .3rem 0 0; padding: 25px">
                         <h2>Documentation</h2>
+                        <p><b>EmunIO</b> offers a <b>boolean search engine</b> and a <b>space-time data visualization</b> for epigraphic databases, features that the author needed but which he did not find. Hence the idea of creating them by himself and proposing them to the community.</p>
+                        <p>The epigraphic database taken into consideration for this project is <a href="https://edh-www.adw.uni-heidelberg.de/home/" target="_blank">Epigraphic Database Heidelberg (EDH)</a>. Although <b>EmunIO</b> may seem to be a criticism of the Heidelberg platform,
+                                 it must be considered that EDH is currently the cutting-edge epigraphic database, the only one that has really understood and put into practice the concept of open data.</p>
+                        
+                        <h3 style="margin-top: 50px">Boolean Search Engine</h3>
+                        <p>The idea of a complex boolean search engine started when the author needed to find all documents talking about <i>Mithras</i>, whose date and place were known, 
+                            inside EDH to create a <b>space-time data visualization</b> to show the evolution of Mithraism in space and time through epigraphic evidence.</p>
+                        <ul style="margin-top: 40px; margin-bottom: 40px">
+                            <li><h6>Problem 1: multiple boolean queries</h6> <p><b>Even if EDH offers a boolean search engine, this is available only with 2 terms</b> ("a and b", "a or b"). 
+                                To search for <i>Mithras</i> (also written "Mitras" or "Mitrhas") it is necessary combine 3 lemmas: "Mithr" or "Mitr" or "Mitrh". Furthermore, using a query based only on lemmas is very inaccurate 
+                                (i.e <u>Mithr</u>idates is not <u>Mithr</u>as). For this reason, considering all the declensions (-as, -ae, -am, -a), there are 12 terms to look for. <br>
+                                Only one possible solution: query one at a time, download the results and merge them</p></li>
+
+                            <li><h6>Problem 2: download data</h6> <p>As already mentioned, it was necessary to find only the documents whose date and place were known. 
+                                To do this it was therefore necessary to perform an Advanced Search to apply these two filters.
+                                 Here a new problem arose: <b>in EDH it is not possible to download the results of an Advanced Search</b>. The project was stuck.</p></li>
+
+                            <li><h6>Problem 3: SPARQL endpoint</h6> <p>In EDH a <a href="https://edh-www.adw.uni-heidelberg.de/data/sparql" target="_blank">SPARQL Endpoint</a> 
+                                is available to execute some queries through SPARQL language. Unfortunately <b>the endpoint has a results limit of 100, a lot of data would have been lost</b>.</p></li>
+                        </ul>
+                        <p>After encountering all these frustrating problems, the best solution was to create a new search engine to meet the needs of Latin grammar. 
+                            <b>It was no longer a search for the word "Mithras" but the possibility to create a totally new platform in support of EDH</b>.</p>
+                        <ul style="margin-top: 40px; margin-bottom: 40px">
+                            <li><h5>EmunIO Dataset</h5><p>
+                                    First it was necessary to create a new dataset in csv format to be processed in the boolean search engine. <br>
+                                    The EDH data dump file containing every epigraph metadata (<a target="_blank" href="#">"edh_inscriptions.ttl"</a> inside "edh_linked_data.zip") and the json file containing the geographical coordinates of ancient places (<a target="_blank" href="#">"edhGeographicData.json"</a>) were therefore downloaded <b>thanks to EDH OpenData policy</b>.
+                                    <br>The "edh_inscriptions.ttl" file was then loaded on a local endpoint (<a target="_blank" href="https://www.blazegraph.com/">Blazegraph</a>) and it was processed by the script <a href="#" target="_blank">datamerge.py</a>:
+                                    <ol>
+                                        <li>
+                                            All documents whose date and place were known has been retrieved through a SPARQL query sent to the local endpoint.
+                                        </li>
+                                        <li>
+                                                For each retrieved document the corresponding place inside the "edhGeographicData.json" file was found, and information about the coordinates were extracted from it.
+                                            </li>
+                                            <li>
+                                                Finally all the documents were saved in a single csv file: <a href="#" target="_blank">FILE:CSV</a>
+                                                </li>
+                                    
+                                    </ol>
+
+                                    </p>
+                                </li>
+                            <li><h5>EmunIO Engine</h5><p>
+                                    The search engine was finally implemented in <a href="#" target="_blank">finder.py</a>:
+                                    <ol>
+                                        <li>
+                                            It processes the csv dataset and converts it into a python list of dictionaries.
+                                        </li>
+                                        <li>
+                                            It executes the query, without any restriction on its complexity, respecting the order of the Boolean operators (first "NOT, then "OR, finally "AND").
+                                        </li>
+                                        <li>
+                                            It returns not only the results to be visualized but also a results json file ready to be downloaded by user.
+                                        </li>
+                                    </ol>
+                                    
+                                </p>
+                                    <code>
+        
+                                    </code>
+                            </li>
+                        </ul>
                 </div>
                 <div class="col-md-3"></div>
             </div>
