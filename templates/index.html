@@ -317,18 +317,18 @@
                 <div class="col-md-3 "></div>
                 <div class="col-md-6 bg-light" align="justify" style= "border-radius:.3rem .3rem 0 0; padding: 25px">
                         <h2>Documentation</h2>
-                        <p><b>EmunIO</b> offers a <b>boolean search engine</b> and a <b>space-time data visualization</b> for epigraphic databases, features that the author needed but which he did not find. Hence the idea of creating them by himself and proposing them to the community.</p>
+                        <p><b>EmunIO</b> proposes a <b>boolean search engine</b> and a <b>space-time data visualization</b> for epigraphic databases, features that the author needed but which he did not find. Hence the idea of creating them by himself and proposing them to the community.</p>
                         <p>The epigraphic database taken into consideration for this project is <a href="https://edh-www.adw.uni-heidelberg.de/home/" target="_blank">Epigraphic Database Heidelberg (EDH)</a>. Although <b>EmunIO</b> may seem to be a criticism of the Heidelberg platform,
                                  it must be considered that EDH is currently the cutting-edge epigraphic database, the only one that has really understood and put into practice the concept of open data.</p>
                         
-                        <h3 style="margin-top: 50px">Boolean Search Engine</h3>
+                        <h3 style="margin-top: 80px">Boolean Search Engine</h3>
                         <p>The idea of a complex boolean search engine started when the author needed to find all documents talking about <i>Mithras</i>, whose date and place were known, 
                             inside EDH to create a <b>space-time data visualization</b> to show the evolution of Mithraism in space and time through epigraphic evidence.</p>
                         <ul style="margin-top: 40px; margin-bottom: 40px">
                             <li><h6>Problem 1: multiple boolean queries</h6> <p><b>Even if EDH offers a boolean search engine, this is available only with 2 terms</b> ("a and b", "a or b"). 
                                 To search for <i>Mithras</i> (also written "Mitras" or "Mitrhas") it is necessary combine 3 lemmas: "Mithr" or "Mitr" or "Mitrh". Furthermore, using a query based only on lemmas is very inaccurate 
                                 (i.e <u>Mithr</u>idates is not <u>Mithr</u>as). For this reason, considering all the declensions (-as, -ae, -am, -a), there are 12 terms to look for. <br>
-                                Only one possible solution: query one at a time, download the results and merge them</p></li>
+                                Only one possible solution: query one at a time, download the results and merge them.</p></li>
 
                             <li><h6>Problem 2: download data</h6> <p>As already mentioned, it was necessary to find only the documents whose date and place were known. 
                                 To do this it was therefore necessary to perform an Advanced Search to apply these two filters.
@@ -379,7 +379,68 @@
                                     </code>
                             </li>
                         </ul>
+                        <h3 style="margin-top: 80px">Space-Time Data Visualization</h3>
+                        <p>Once the data are ready, it is possible to focus on the visualization.</p>
+                        <p>EDH proposes 2 interesting data interfaces to analyze results:</p>
+                        <ul>
+                            <li><h6>Distribution by chronological data</h6></li>
+                                <p>A graph depicting the data frequency distribution over the years.</p>
+                                <img src="static/css/edh-time.png" width="100%">
+                                <p><b>PROS:</b> this graph provides really interesting information on an historical point of view in a very clear way.</p>
+                                <p><b>CONS:</b> this graph is made using <a href="https://www.highcharts.com" target="_blank">Highchart</a>, a interesting proprietary software, the service is chargeable or it comes free with a <a href="https://creativecommons.org/licenses/by-nc/3.0/" target="_blank">Creative Commons Attribution-NonCommercial licence</a>, and this means <b>no open access</b> possibility.</p>
+ 
+                                <li><h6>Map View Distribution</h6></li>
+                                    <p>A Map depicting the data distribution over the space.</p>
+                                    <img src="static/css/edh-space.png" width="100%">
+                                    <p><b>PROS:</b> EDH makes great use of the leaflet markercluster library (<b>Open Source library</b>) in managing multiple documents in the same place.</p>
+                                    <p><b>CONS:</b> On an historical study point of view having a map that shows all the documents without making a distinction in the time period greatly reduces the possibilities for analysis.</p>
+
+                        </ul>
+                        <h5 style="margin-top: 50px">EmunIO Data Visualization</h5>
+                        <p>
+                            Starting from EDH platform the idea was really simple: merge the two interfaces into one. A timeline slider to select date which not only shows the frequency of documents on that date but also displays them on a map.
+                            A similar approach can be seen in <a href="https://peripleo.pelagios.org/ui#q=caesar&filters=true" target="_blank">Peripleo</a> but in this example markers inside maps aren't clustered, so the interface has problem to handle overlapping geographical information. 
+                            On the other hand <b>EmunIO</b> Data Visualization interface on has the following <b>unique features</b>:
+                        </p>
+                        <ul>
+                            <li><h6>Totally Open Source code (including external libraries)</h6></li>
+                            <li><h6>Markers clustered inside map</h6></li>
+                            <li><h6>Document's data available directly inside marker's pop-up</h6></li>
+                            <li><h6>Multiple navigation possibilities:</h6></li>
+                                <ul>
+                                    <li>moving slider</li>
+                                    <li>clicking arrows (forward backwards)</li>
+                                    <li>typing the date in the box</li>
+                                    <li>clicking directly on the chart</li>
+
+                                </ul>
+                            <li><h6>Auxiliary analysis tools:</h6></li>
+                            <ul>
+                                <li>display total result count</li>
+                                <li>percentage of epigraphs by selected year</li>
+                                <li>line of annual average of epigraphs diplayed on the chart</li>
+                            </ul>
+
+                        </ul>
+
+                    <h2 style="margin-top:80px;">Future Developments</h2>
+                    <p ><b>EmunIO</b> is not complete. <br>
+                        By relating space and time in an interface, the importance of the concept of historical evolution in the context of epigraphy was highlighted. 
+                        The next step will be to bring out the evolution also in the political geography of the map. 
+                        The expansion and decline of Rome represent the context of the dissemination of epigraphic documents. 
+                        In example, there are documents in Dacia before the official annexation of the Roman Empire, and this issue has a value to emphsize.
+                        To do this, however, an important research for sources and atlases to be digitized is required, always respecting <a href="http://opendefinition.org/" target="_blank">Open Definition principles</a>.
+
+                    </p>
+                    <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                            <img src="static/css/empire.gif" style="width:100%">
+                    </div>
+                    <div class="col-md-3"></div>
                 </div>
+                <div style="margin-bottom:60px; text-align:center; font-size: smaller;">User:Roke~commonswiki [<a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>], <a href="https://commons.wikimedia.org/wiki/File:Roman_Empire_map.gif">via Wikimedia Commons</a></div>
+
                 <div class="col-md-3"></div>
             </div>
         </div>
