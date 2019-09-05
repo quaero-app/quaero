@@ -65,7 +65,7 @@
                           <a class="nav-link" href="/documentation">DOCUMENTATION</a>
                         </li>
                         <li class="nav-item">
-                                <a style="color: rgba(255,255,255,.5) !important" class="nav-link" target="_blank" href="https://github.com/quaero/quaero">GITHUB</a>
+                                <a style="color: rgba(255,255,255,.5) !important" class="nav-link" target="_blank" href="https://github.com/quaero-app/quaero">GITHUB</a>
                         </li>
                         {% if step == "about" %}
                         <li class="nav-item active">
@@ -342,8 +342,8 @@
                         <ul style="margin-top: 40px; margin-bottom: 40px">
                             <li><h5>Qu&#xe6;ro Dataset</h5><p>
                                     First it was necessary to create a new dataset in csv format to be processed in the boolean search engine. <br>
-                                    The EDH data dump file containing every epigraph metadata (<a target="_blank" href="#">"edh_inscriptions.ttl"</a> inside "edh_linked_data.zip") and the json file containing the geographical coordinates of ancient places (<a target="_blank" href="#">"edhGeographicData.json"</a>) were therefore downloaded <b>thanks to EDH OpenData policy</b>.
-                                    <br>The "edh_inscriptions.ttl" file was then loaded on a local endpoint (<a target="_blank" href="https://www.blazegraph.com/">Blazegraph</a>) and it was processed by the script <a href="#" target="_blank">datamerge.py</a>:
+                                    The EDH data dump file containing every epigraph metadata (<a target="_blank" href="https://github.com/quaero-app/quaero/blob/master/data/dataprocessing/data.zip">"edh_inscriptions.ttl"</a> inside "edh_linked_data.zip") and the json file containing the geographical coordinates of ancient places (<a target="_blank" href="https://github.com/quaero-app/quaero/blob/master/data/dataprocessing/data.zip">"edhGeographicData.json"</a>) were therefore downloaded <b>thanks to EDH OpenData policy</b>.
+                                    <br>The "edh_inscriptions.ttl" file was then loaded on a local endpoint (<a target="_blank" href="https://www.blazegraph.com/">Blazegraph</a>) and it was processed by the script <a href="https://github.com/quaero-app/quaero/blob/master/data/dataprocessing/datamerge.py" target="_blank">datamerge.py</a>:
                                     <ol>
                                         <li>
                                             All documents whose date and place were known has been retrieved through a SPARQL query sent to the local endpoint.
@@ -352,7 +352,7 @@
                                                 For each retrieved document the corresponding place inside the "edhGeographicData.json" file was found, and information about the coordinates were extracted from it.
                                             </li>
                                             <li>
-                                                Finally all the documents were saved in a single csv file: <a href="#" target="_blank">FILE:CSV</a>
+                                                Finally all the documents were saved in a single csv file: <a href="https://github.com/quaero-app/quaero/blob/master/data/Quaero_data.csv" target="_blank">Quaero_data.csv</a>
                                                 </li>
                                     
                                     </ol>
@@ -360,7 +360,7 @@
                                     </p>
                                 </li>
                             <li><h5>Qu&#xe6;ro Engine</h5><p>
-                                    The search engine was finally implemented in <a href="#" target="_blank">finder.py</a>:
+                                    The search engine was finally implemented in <a href="https://github.com/quaero-app/quaero/blob/master/finder.py" target="_blank">finder.py</a>:
                                     <ol>
                                         <li>
                                             It processes the csv dataset and converts it into a python list of dictionaries.
