@@ -122,14 +122,8 @@
                                       
                                           <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                    <p>In this example <b>Qu&#xe6;ro</b> will find all documents about the Legio IX Hispana (also written Legio nona Hispana or Legio VIIII Hispana), a legion of the Imperial Roman army.</p>
-                                                    <textarea id="demoval1" style="width: 100%; height: 80px; resize:none; margin-top:10px; margin-bottom:5px" readonly>legio OR legionis OR legioni OR legionem OR legione AND ix OR viiii OR nona OR nonae OR nonam AND hispana OR hispanae OR hispanam</textarea>
-                                                    <p>This query combines (AND) 3 sub-queries:</p>
-                                                    <ul>
-                                                            <li><b>"legio OR legionis OR legioni OR legionem OR legione"</b>: query the noun "legio" in all possible declension cases.</li>
-                                                            <li><b>"ix OR viiii or nona or nonae or nonam"</b>: query the number 9 both roman numbers and in words (any declension cases).</li>
-                                                            <li><b>"hispana OR hispanae OR hispanam"</b>: query the adjective "hispana" in all possible declension cases.</li>
-                                                    </ul> 
+                                                    <p>In this example <b>Qu&#xe6;ro</b> will find all documents about the Legio IX (also written VIIII)Hispana, the ninth legion of the Imperial Roman army.</p>
+                                                    <textarea id="demoval1" style="width: 100%; height: 100px; resize:none; margin-top:10px; margin-bottom:5px" readonly>legio AND hispana AND viiii OR legionis AND hispanae AND viiii OR legioni AND hispanae AND viiii OR legionem AND hispanam AND viiii OR legione AND hispana AND viiii OR legio AND hispana AND ix OR legionis AND hispanae AND ix OR legioni AND hispanae AND ix OR legionem AND hispanam AND ix OR legione AND hispana AND ix </textarea>
                                                     <button id="demo1" class="btn btn-secondary">Try this query</button>
                                             </div>
                                           </div>
@@ -146,12 +140,6 @@
                                             <div class="card-body">
                                                     <p>In this example <b>Qu&#xe6;ro</b> will find all documents about Mithras (also written Mitras or Mitrhas), a deity of the Roman Empire</p>
                                                     <textarea id="demoval2" style="width: 100%; height: 80px; resize:none; margin-top:10px; margin-bottom:5px" readonly>mithras OR mithrae OR mithram OR mithra OR mitras OR mitrae OR mitram OR mihra OR mitrhas OR mitrhae OR mitrham OR mitrha</textarea>
-                                                    <p>This query retrieves the word mithras in any form and declension:</p>
-                                                    <ul>
-                                                            <li><b>"mithras OR mithrae OR mithram OR mithra"</b>: query the noun "mithras" in all possible declension cases.</li>
-                                                            <li><b>"mitras OR mitrae OR mitram OR mitra"</b>: query the noun "mitras" in all possible declension cases.</li>
-                                                            <li><b>"mitrhas OR mitrhas OR mitrham OR mitrha</b>: query the noun "mitrhas" in all possible declension cases.</li>
-                                                    </ul> 
                                                     <button id="demo2" class="btn btn-secondary">Try this query</button>
                                             </div>
                                           </div>
@@ -167,12 +155,7 @@
                                           <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                             <div class="card-body">
                                                     <p>In this example <b>Qu&#xe6;ro</b> will find all documents about Iulia Domna (160–217 AD), a powerfull Roman Empress.</p>
-                                                    <textarea id="demoval3" style="width: 100%; height: 80px; resize:none; margin-top:10px; margin-bottom:5px" readonly>iulia OR iuliae OR iuliam AND domna OR domnae OR domnam</textarea>
-                                                    <p>This query combines (AND) 2 sub-queries:</p>
-                                                    <ul>
-                                                            <li><b>"iulia or iuliae or iuliam"</b>: query the <i>nomen</i> "iulia" in all possible declension cases.</li>
-                                                            <li><b>"domna or domnae or domnam"</b>: query the <i>cognomen</i> "domna" in all possible declension cases.</li>
-                                                    </ul> 
+                                                    <textarea id="demoval3" style="width: 100%; height: 80px; resize:none; margin-top:10px; margin-bottom:5px" readonly>iulia AND domna OR iuliae AND domnae OR iuliam AND domnam</textarea>
                                                     <button id="demo3" class="btn btn-secondary">Try this query</button>
                                                     </div>
                                                     <div class="modal-footer">
@@ -213,10 +196,10 @@
                                             <p>Boolean search operators can be used in any combination, but there is an order in which the operations are executed: </p>
                                                 <ul>
                                                     <li>First all NOT operators,</li>
-                                                    <li>Then all OR operators,</li>
-                                                    <li>Finally all AND operators</li>
+                                                    <li>Then all AND operators,</li>
+                                                    <li>Finally all OR operators</li>
                                                 </ul> 
-                                            <p>Ex. <b>"imperator AND tiberius OR imperator AND NOT nero"</b> will be executed in the following order: imperator AND (tiberius OR imperator) AND (NOT nero)</p>
+                                            <p>Ex. <b>"imperator AND tiberius OR imperator AND NOT nero"</b> will be executed in the following order: (imperator AND tiberius) OR (imperator AND (NOT nero))</p>
                                         </div>
                                 </div>
                                 <div class="modal-footer">

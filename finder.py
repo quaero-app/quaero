@@ -13,19 +13,9 @@ def do_search(data, query,  partial_res):
     if partial_res:
         data = partial_res
 
-    # AND
-    if " and " in query:
-        subquery = query.split(' and ', 1)
-        query1 = subquery[0]
-        query2 = subquery[1]
-        result_query1 = do_search(data, query1, partial_res)
-        if result_query1 == []:
-            return result_query1
-        else:
-            return do_search(data, query2, result_query1)
 
     # OR
-    elif " or " in query:
+    if " or " in query:
         subquery = query.split(' or ', 1)
         query1 = subquery[0]
         query2 = subquery[1]
@@ -35,6 +25,19 @@ def do_search(data, query,  partial_res):
             if i not in or_list:
                 or_list.append(i)
         return or_list
+
+
+    # AND
+    elif " and " in query:
+        subquery = query.split(' and ', 1)
+        query1 = subquery[0]
+        query2 = subquery[1]
+        result_query1 = do_search(data, query1, partial_res)
+        if result_query1 == []:
+            return result_query1
+        else:
+            return do_search(data, query2, result_query1)
+
 
     # NOT
     elif query.startswith("not "):
