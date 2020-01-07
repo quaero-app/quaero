@@ -445,7 +445,7 @@
                         <p><b>Qu&#xe6;ro</b> is a derivative work of the following datasets:
                             <ul>
                                 <li><a href="https://edh-www.adw.uni-heidelberg.de/home/" target="_blank">Epigraphic Database Heidelberg</a> - <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a></li>
-                                <li><a href="https://dare.ht.lu.se/" target="_blank">Digital Atlas of the Roman Empire</a> - <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank">CC BY-SA 3.0</a></li>
+                                <li><a href="https://dh.gu.se/dare/" target="_blank">Digital Atlas of the Roman Empire</a> - <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a></li>
                             </ul>
                         </p>
 
@@ -518,7 +518,8 @@
 			zoomLev = map.getZoom(6)
 		})
 		map.setMaxBounds(imageBounds);
-        var basemap_0 = L.tileLayer('https://dare.ht.lu.se/tiles/imperium/{z}/{x}/{y}.png', {id: 'DARE' ,attribution: 'Map Tiles: <a href="https://dare.ht.lu.se/" target="_blank">DARE</a>'});
+        //OLD MAP LINKS https://dare.ht.lu.se/tiles/imperium/{z}/{x}/{y}.png https://dare.ht.lu.se/"
+        var basemap_0 = L.tileLayer('https://dh.gu.se/tiles/imperium/{z}/{x}/{y}.png', {id: 'DARE' ,attribution: 'Map Tiles: <a href="https://dh.gu.se/dare/" target="_blank">DARE</a>'});
         basemap_0.addTo(map);
 
 
