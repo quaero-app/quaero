@@ -11,10 +11,10 @@ data = process_data("data/Quaero_data.csv")
 def index():
     return render_template('index.html', step= "query")
 
-@app.route('/query', methods=['POST'])
+@app.route('/query', methods=['GET'])
 
 def query():
-    queryfield = request.form['query']
+    queryfield = request.args['query']
     queryfield = queryfield.lower()
     research = do_search(data, queryfield, None)
     if len(research) > 0:
@@ -33,12 +33,6 @@ def documentation():
 def about():
     return render_template("index.html", step="about")
 
-@app.after_request
-def after_request(response):
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, public, max-age=0"
-    response.headers["Expires"] = 0
-    response.headers["Pragma"] = "no-cache"
-    return response
 
 if __name__ == '__main__':
   app.run (host='0.0.0.0')
