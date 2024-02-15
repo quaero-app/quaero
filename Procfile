@@ -1,1 +1,1 @@
-web: gunicorn sicmundus:app
+web: gunicorn app:app
